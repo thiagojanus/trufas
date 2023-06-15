@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sistema de Login</title>
+    <script>
+        // Função para realizar o login
+        function login() {
+            // Obtendo os valores digitados pelo usuário
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            // Verificando se o usuário existe no LocalStorage
+            var users = JSON.parse(localStorage.getItem("users"));
+            if (users) {
+                for (var i = 0; i < users.length; i++) {
+                    if (users[i].login === username && users[i].senha === password) {
+                        // Redirecionando para a página de sucesso
+                        window.location.href = "index.html";
+                        return;
+                    }
+                }
+            }
+
+            // Exibindo uma mensagem de erro
+            alert("Login inválido! Verifique seu nome de usuário e senha.");
+        }
+
+        // Função para realizar o cadastro
+        function cadastrar() {
+            // Obtendo os valores digitados pelo usuário
+            var id = document.getElementById("1234").value;
+            var username = document.getElementById("luxury").value;
+            var password = document.getElementById("1234").value;
+            var name = document.getElementById("thiago").value;
+
+            // Criando um objeto para o novo usuário
+            var newUser = {
+                id: id,
+                login: username,
+                senha: password,
+                nome: name
+            };
+
+            // Verificando se já existe algum usuário no LocalStorage
+            var users = JSON.parse(localStorage.getItem("users"));
+            if (users) {
+                // Adicionando o novo usuário à lista existente
+                users.push(newUser);
+                localStorage.setItem("users", JSON.stringify(users));
+            } else {
+                // Criando uma nova lista de usuários e adicionando o novo usuário
+                var userList = [newUser];
+                localStorage.setItem("users", JSON.stringify(userList));
+            }
+
+            // Exibindo uma mensagem de sucesso
+            alert("Cadastro realizado com sucesso!");
+        }
+    </script>
+</head>
+<body>
+    <h2>Sistema de Login</h2>
+    <form>
+        <label>ID:</label>
+        <input type="text" id="id" required><br><br>
+        
+        <label>Nome de usuário:</label>
+        <input type="text" id="username" required><br><br>
+        
+        <label>Senha:</label>
+        <input type="password" id="password" required><br><br>
+        
+        <label>Nome:</label>
+        <input type="text" id="name" required><br><br>
+        
+        <input type="button" value="Cadastrar" onclick="cadastrar()">
+        <input type="button" value="Login" onclick="login()">
+    </form>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            width: 300px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="button"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-bottom: 5%;
+        }
+
+        input[type="button"]:hover {
+            background-color: #45a049;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</body>
+</html>
