@@ -1,3 +1,3 @@
 # trufa
-https://thiagojanus.github.io/trufa/
 
+https://thiagojanus.github.io/trufas/
